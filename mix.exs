@@ -38,7 +38,7 @@ defmodule NebulexEcto.Mixfile do
 
   defp deps do
     [
-      {:nebulex, "~> 1.0"},
+      {:nebulex, "~> 2.0"},
 
       # Test
       {:ecto, "~> 3.0", only: :test},
