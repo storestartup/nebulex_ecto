@@ -160,7 +160,8 @@ defmodule NebulexEcto.Repo do
             value
 
           value = fallback.(queryable, key, opts) ->
-            @cache.set(cache_key, value)
+            @cache.put(cache_key, value)
+            value
 
           true ->
             nil
@@ -195,8 +196,10 @@ defmodule NebulexEcto.Repo do
       defp cache_evict(:delete, key, _),
         do: @cache.delete(key)
 
-      defp cache_evict(:replace, key, value),
-        do: @cache.set(key, value)
+      defp cache_evict(:replace, key, value) do
+        @cache.put(key, value)
+        value
+      end
     end
   end
 
